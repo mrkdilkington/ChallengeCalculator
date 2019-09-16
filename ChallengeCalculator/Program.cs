@@ -18,6 +18,12 @@ namespace ChallengeCalculator {
       }
       Assert.IsTrue(exceptionThrowOnNegative, "Exception should be thrown on negative number.");
     }
+
+    public void StringCalculatorTestStep5() {
+      const string testInput = "2,1001,6";
+      int calcValue = StringCalculator(testInput);
+      Assert.IsTrue(calcValue == 8, "Value should equal 8. Ignore any number greater than 1000");
+    }
     public int StringCalculator(string input) {
       // Split the string by comma, traverse the IEnumerable and add the parsed numbers to a list
       IEnumerable<string> sNumbers = input.Split(new string[2] { ",", "\\n" }, StringSplitOptions.None);
@@ -25,6 +31,8 @@ namespace ChallengeCalculator {
       foreach (string sNumber in sNumbers) {
         int number = 0;
         int.TryParse(sNumber, out number);
+        if (number > 1000)
+          continue;
         numbers.Add(number);
       }
       if (numbers.Any(n => n < 0))

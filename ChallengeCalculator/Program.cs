@@ -30,6 +30,11 @@ namespace ChallengeCalculator {
       int calcValue = StringCalculator(testInput);
       Assert.IsTrue(calcValue == 7, "Value should equal 7.");
     }
+    public void StringCalculatorTestStep7() {
+      const string testInput = "//[***]\n11***22***33";
+      int calcValue = StringCalculator(testInput);
+      Assert.IsTrue(calcValue == 66, "Value should equal 66.");
+    }
     public int StringCalculator(string input) {
       // Split the string by comma, traverse the IEnumerable and add the parsed numbers to a list
       input = input ?? "";
@@ -37,6 +42,9 @@ namespace ChallengeCalculator {
         List<string> cInput = input.Split(new string[2] { "//", "\\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
         if (cInput.Count == 2 && cInput[0].Length == 1) {
           input = string.Join(",", cInput[1].Split(new string[1] { cInput[0] }, StringSplitOptions.RemoveEmptyEntries));
+        }
+        else if (cInput.Count == 2 && cInput[0].Count(f => f == '[') == 1 && cInput[0].Count(f => f == ']') == 1) {
+          input = string.Join(",", cInput[1].Split(new string[1] { cInput[0].Trim('[',']') }, StringSplitOptions.RemoveEmptyEntries));
         }
       }
       IEnumerable<string> sNumbers = input.Split(new string[2] { ",", "\\n" }, StringSplitOptions.None);

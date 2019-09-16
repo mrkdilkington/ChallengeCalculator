@@ -8,9 +8,15 @@ namespace ChallengeCalculator {
   class ChallengeCalculatorProgram {
     [TestMethod]
     public void StringCalculatorTest() {
-      const string testInput = "1,2,3,4,5,6,7,8,9,10,11,12\n1";
-      int calcValue = StringCalculator(testInput);
-      Assert.IsTrue(calcValue == 78, string.Format("{0} input should equal 79.", testInput));
+      const string testInput = "-1,5";
+      bool exceptionThrowOnNegative = false;
+      try {
+        int calcValue = StringCalculator(testInput);
+      }
+      catch (ArgumentException) {
+        exceptionThrowOnNegative = true;
+      }
+      Assert.IsTrue(exceptionThrowOnNegative, "Exception should be thrown on negative number.");
     }
     public int StringCalculator(string input) {
       // Split the string by comma, traverse the IEnumerable and add the parsed numbers to a list
@@ -21,6 +27,8 @@ namespace ChallengeCalculator {
         int.TryParse(sNumber, out number);
         numbers.Add(number);
       }
+      if (numbers.Any(n => n < 0))
+        throw new ArgumentException("Negative numbers are not allowed.");
       // Sum the numbers in the list, and print out the addition of the numbers.
       int sum = numbers.Sum();
       string printOut = string.Format("{0} = {1}", string.Join("+", numbers), sum);

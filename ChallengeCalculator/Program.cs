@@ -8,13 +8,13 @@ namespace ChallengeCalculator {
   class ChallengeCalculatorProgram {
     [TestMethod]
     public void StringCalculatorTest() {
-      const string testInput = "5,3";
+      const string testInput = "1,2,3,4,5,6,7,8,9,10,11,12";
       int calcValue = StringCalculator(testInput);
-      Assert.IsTrue(calcValue == 8, string.Format("{0} input should equal 8.", testInput));
+      Assert.IsTrue(calcValue == 78, string.Format("{0} input should equal 78.", testInput));
     }
     public int StringCalculator(string input) {
       // Split the string by comma, traverse the IEnumerable and add the parsed numbers to a list
-      IEnumerable<string> sNumbers = input.Split(',').Take(2);
+      IEnumerable<string> sNumbers = input.Split(',');
       List<int> numbers = new List<int>();
       foreach (string sNumber in sNumbers) {
         int number = 0;

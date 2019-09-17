@@ -36,7 +36,7 @@ namespace ChallengeCalculator {
       int calcValue = StringCalculator(testInput);
       Assert.IsTrue(calcValue == 66, "Value should equal 66.");
     }
-
+    [TestMethod]
     public void StringCalculatorTestStep8() {
       const string testInput = "//[*][!!][r9r]\n11r9r22*33!!44";
       int calcValue = StringCalculator(testInput);

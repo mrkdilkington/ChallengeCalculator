@@ -18,18 +18,19 @@ namespace ChallengeCalculator {
       }
       Assert.IsTrue(exceptionThrowOnNegative, "Exception should be thrown on negative number.");
     }
-
+    [TestMethod]
     public void StringCalculatorTestStep5() {
       const string testInput = "2,1001,6";
       int calcValue = StringCalculator(testInput);
       Assert.IsTrue(calcValue == 8, "Value should equal 8. Ignore any number greater than 1000");
     }
-
+    [TestMethod]
     public void StringCalculatorTestStep6() {
       const string testInput = "//;\n2;5";
       int calcValue = StringCalculator(testInput);
       Assert.IsTrue(calcValue == 7, "Value should equal 7.");
     }
+    [TestMethod]
     public void StringCalculatorTestStep7() {
       const string testInput = "//[***]\n11***22***33";
       int calcValue = StringCalculator(testInput);
